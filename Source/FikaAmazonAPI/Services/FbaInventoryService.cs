@@ -30,7 +30,7 @@ namespace FikaAmazonAPI.Services
             var list = new List<InventorySummaries>();
             var param = parameter.getParameters();
 
-            await CreateAuthorizedRequestAsync(FbaInventoriesApiUrls.GetInventorySummaries, RestSharp.Method.Get, param, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FbaInventoriesApiUrls.GetInventorySummaries, RestSharp.Method.GET, param, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetInventorySummariesResponse>(RateLimitType.FbaInventory_GetInventorySummaries, cancellationToken);
             list.Add(response.Payload.InventorySummaries);
             if (response.Pagination != null && !string.IsNullOrEmpty(response.Pagination.NextToken))
@@ -54,7 +54,7 @@ namespace FikaAmazonAPI.Services
             parameterGetInventorySummaries.nextToken = nextToken;
             var param = parameterGetInventorySummaries.getParameters();
 
-            await CreateAuthorizedRequestAsync(FbaInventoriesApiUrls.GetInventorySummaries, RestSharp.Method.Get, param, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FbaInventoriesApiUrls.GetInventorySummaries, RestSharp.Method.GET, param, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetInventorySummariesResponse>(RateLimitType.FbaInventory_GetInventorySummaries, cancellationToken);
 
             return response;

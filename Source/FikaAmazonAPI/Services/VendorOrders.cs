@@ -24,7 +24,7 @@ namespace FikaAmazonAPI.Services
             do
             {
                 var queryParameters = searchOrderList.getParameters();
-                await CreateAuthorizedRequestAsync(VendorOrdersApiUrls.GetPurchaseOrders, RestSharp.Method.Get, queryParameters, parameter: searchOrderList, cancellationToken: cancellationToken);
+                await CreateAuthorizedRequestAsync(VendorOrdersApiUrls.GetPurchaseOrders, RestSharp.Method.GET, queryParameters, parameter: searchOrderList, cancellationToken: cancellationToken);
                 GetPurchaseOrdersResponse response = await ExecuteRequestAsync<GetPurchaseOrdersResponse>(RateLimitType.VendorOrdersV1_GetPurchaseOrders, cancellationToken);
                 nextToken = response.Payload?.Pagination?.NextToken;
                 searchOrderList.nextToken = nextToken;
@@ -42,7 +42,7 @@ namespace FikaAmazonAPI.Services
             do
             {
                 var queryParameters = searchOrderList.getParameters();
-                await CreateAuthorizedRequestAsync(VendorOrdersApiUrls.GetPurchaseOrdersStatus, RestSharp.Method.Get, queryParameters, parameter: searchOrderList, cancellationToken: cancellationToken);
+                await CreateAuthorizedRequestAsync(VendorOrdersApiUrls.GetPurchaseOrdersStatus, RestSharp.Method.GET, queryParameters, parameter: searchOrderList, cancellationToken: cancellationToken);
                 GetPurchaseOrdersStatusResponse response = await ExecuteRequestAsync<GetPurchaseOrdersStatusResponse>(RateLimitType.VendorOrdersV1_GetPurchaseOrdersStatus, cancellationToken);
                 nextToken = response.Payload?.Pagination?.NextToken;
                 searchOrderList.nextToken = nextToken;
@@ -55,7 +55,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetPurchaseOrderAsync(PurchaseOrderNumber)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<Order> GetPurchaseOrderAsync(string PurchaseOrderNumber, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(VendorOrdersApiUrls.GetPurchaseOrder(PurchaseOrderNumber), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(VendorOrdersApiUrls.GetPurchaseOrder(PurchaseOrderNumber), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetPurchaseOrderResponse>(RateLimitType.VendorOrdersV1_GetPurchaseOrder, cancellationToken);
             return response.Payload;
         }
@@ -64,7 +64,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => SubmitAcknowledgementAsync(submitAcknowledgementRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<TransactionId> SubmitAcknowledgementAsync(SubmitAcknowledgementRequest submitAcknowledgementRequest, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(VendorOrdersApiUrls.SubmitAcknowledgement, RestSharp.Method.Post, postJsonObj: submitAcknowledgementRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(VendorOrdersApiUrls.SubmitAcknowledgement, RestSharp.Method.POST, postJsonObj: submitAcknowledgementRequest, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<SubmitAcknowledgementResponse>(RateLimitType.VendorOrdersV1_SubmitAcknowledgement, cancellationToken);
             if (response != null && response.Payload != null)
                 return response.Payload;

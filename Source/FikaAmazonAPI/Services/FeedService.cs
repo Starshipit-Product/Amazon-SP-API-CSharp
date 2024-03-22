@@ -32,7 +32,7 @@ namespace FikaAmazonAPI.Services
 
             var parameter = parameterGetFeed.getParameters();
 
-            await CreateAuthorizedRequestAsync(FeedsApiUrls.GetFeeds, RestSharp.Method.Get, parameter, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FeedsApiUrls.GetFeeds, RestSharp.Method.GET, parameter, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetFeedsResponseV00>(RateLimitType.Feed_GetFeeds, cancellationToken);
 
             list.AddRange(response.Feeds);
@@ -57,7 +57,7 @@ namespace FikaAmazonAPI.Services
             queryParameters.Add(new KeyValuePair<string, string>("nextToken", nextToken));
 
 
-            await CreateAuthorizedRequestAsync(FeedsApiUrls.GetFeeds, RestSharp.Method.Get, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FeedsApiUrls.GetFeeds, RestSharp.Method.GET, queryParameters, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetFeedsResponseV00>(RateLimitType.Feed_GetFeeds, cancellationToken);
             return response;
         }
@@ -67,7 +67,7 @@ namespace FikaAmazonAPI.Services
 
         public async Task<CreateFeedResult> CreateFeedAsync(CreateFeedSpecification createFeedSpecification, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(FeedsApiUrls.CreateFeed, RestSharp.Method.Post, postJsonObj: createFeedSpecification, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FeedsApiUrls.CreateFeed, RestSharp.Method.POST, postJsonObj: createFeedSpecification, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<CreateFeedResult>(RateLimitType.Feed_CreateFeed, cancellationToken);
 
             return response;
@@ -77,7 +77,7 @@ namespace FikaAmazonAPI.Services
 
         public async Task<Feed> GetFeedAsync(string feedId, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(FeedsApiUrls.GetFeed(feedId), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FeedsApiUrls.GetFeed(feedId), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<Feed>(RateLimitType.Feed_GetFeed, cancellationToken);
             if (response != null)
                 return response;
@@ -88,7 +88,7 @@ namespace FikaAmazonAPI.Services
 
         public async Task<Feed> CancelFeedAsync(string feedId, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(FeedsApiUrls.CancelFeed(feedId), RestSharp.Method.Delete, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FeedsApiUrls.CancelFeed(feedId), RestSharp.Method.DELETE, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<Feed>(RateLimitType.Feed_CancelFeed, cancellationToken);
             if (response != null)
                 return response;
@@ -100,7 +100,7 @@ namespace FikaAmazonAPI.Services
 
         public async Task<FeedDocument> GetFeedDocumentAsync(string feedDocumentId, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(FeedsApiUrls.GetFeedDocument(feedDocumentId), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FeedsApiUrls.GetFeedDocument(feedDocumentId), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<FeedDocument>(RateLimitType.Feed_GetFeedDocument, cancellationToken);
             if (response != null)
                 return response;
@@ -188,7 +188,7 @@ namespace FikaAmazonAPI.Services
             var contxt = LinqHelper.GetEnumMemberValue(contentType);
             var createFeedDocumentSpecification = new AmazonSpApiSDK.Models.Feeds.CreateFeedDocumentSpecification(contxt);
 
-            await CreateAuthorizedRequestAsync(FeedsApiUrls.CreateFeedDocument, RestSharp.Method.Post, postJsonObj: createFeedDocumentSpecification, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FeedsApiUrls.CreateFeedDocument, RestSharp.Method.POST, postJsonObj: createFeedDocumentSpecification, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<CreateFeedDocumentResult>(RateLimitType.Feed_CreateFeedDocument, cancellationToken);
             if (response != null)
                 return response;

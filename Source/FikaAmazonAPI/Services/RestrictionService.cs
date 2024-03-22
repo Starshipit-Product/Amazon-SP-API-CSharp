@@ -22,7 +22,7 @@ namespace FikaAmazonAPI.Services
                 parameter.marketplaceIds.Add(AmazonCredential.MarketPlace.ID);
             }
             var param = parameter.getParameters();
-            await CreateAuthorizedRequestAsync(RestrictionsApiUrls.GetListingsRestrictions, RestSharp.Method.Get, param, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(RestrictionsApiUrls.GetListingsRestrictions, RestSharp.Method.GET, param, cancellationToken: cancellationToken);
             return await ExecuteRequestAsync<RestrictionList>(Utils.RateLimitType.Restrictions_GetListingsRestrictions, cancellationToken);
         }
     }

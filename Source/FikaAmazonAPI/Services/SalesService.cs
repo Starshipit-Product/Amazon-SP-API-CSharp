@@ -19,7 +19,7 @@ namespace FikaAmazonAPI.Services
         public async Task<List<OrderMetricsInterval>> GetOrderMetricsAsync(ParameterGetOrderMetrics parameterGetOrderMetrics, CancellationToken cancellationToken = default)
         {
             var param = parameterGetOrderMetrics.getParameters();
-            await CreateAuthorizedRequestAsync(SalesApiUrls.GetOrderMetrics, RestSharp.Method.Get, param, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(SalesApiUrls.GetOrderMetrics, RestSharp.Method.GET, param, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrderMetricsResponse>(Utils.RateLimitType.Sales_GetOrderMetrics, cancellationToken);
             if (response != null && response.Payload != null)
                 return response.Payload;

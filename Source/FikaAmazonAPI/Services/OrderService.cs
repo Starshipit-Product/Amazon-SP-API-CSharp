@@ -48,7 +48,7 @@ namespace FikaAmazonAPI.Services
 
             var queryParameters = searchOrderList.getParameters();
 
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.Orders, RestSharp.Method.Get, queryParameters, parameter: searchOrderList, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.Orders, RestSharp.Method.GET, queryParameters, parameter: searchOrderList, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrdersResponse>(Utils.RateLimitType.Order_GetOrders, cancellationToken);
             var nextToken = response.Payload.NextToken;
             orderList = response.Payload.Orders;
@@ -88,7 +88,7 @@ namespace FikaAmazonAPI.Services
             queryParameters.Add(new KeyValuePair<string, string>("NextToken", nextToken));
             queryParameters.Add(new KeyValuePair<string, string>("MarketplaceIds", string.Join(",", searchOrderList.MarketplaceIds)));
 
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.Orders, RestSharp.Method.Get, queryParameters, parameter: searchOrderList, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.Orders, RestSharp.Method.GET, queryParameters, parameter: searchOrderList, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrdersResponse>(Utils.RateLimitType.Order_GetOrders, cancellationToken);
             return response.Payload;
         }
@@ -108,7 +108,7 @@ namespace FikaAmazonAPI.Services
             }
             var queryParameters = searchOrderList.getParameters();
 
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.Orders, RestSharp.Method.Get, queryParameters, parameter: searchOrderList);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.Orders, RestSharp.Method.GET, queryParameters, parameter: searchOrderList);
             var response = await ExecuteRequestAsync<GetOrdersResponse>(Utils.RateLimitType.Order_GetOrders);
             var nextToken = response.Payload.NextToken;
             orderList = response.Payload.Orders;
@@ -151,7 +151,7 @@ namespace FikaAmazonAPI.Services
 
             List<KeyValuePair<string, string>> queryParameters = parameterOrderList.getParameters();
            
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.Orders, RestSharp.Method.Get, queryParameters);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.Orders, RestSharp.Method.GET, queryParameters);
             var response = await ExecuteRequestAsync<GetOrdersResponse>(Utils.RateLimitType.Order_GetOrders);
             return response.Payload;
         }
@@ -166,7 +166,7 @@ namespace FikaAmazonAPI.Services
             }
             var queryParameters = searchOrderList.getParameters();
 
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.Orders, RestSharp.Method.Get, queryParameters, parameter: searchOrderList);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.Orders, RestSharp.Method.GET, queryParameters, parameter: searchOrderList);
             var response = await ExecuteRequestAsync<GetOrdersResponse>(Utils.RateLimitType.Order_GetOrders);
             return response.Payload;
         }
@@ -191,7 +191,7 @@ namespace FikaAmazonAPI.Services
                 parameter.RestrictedDataTokenRequest = createRDT;
             }
 
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.Order(parameter.OrderId), RestSharp.Method.Get, parameter: parameter, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.Order(parameter.OrderId), RestSharp.Method.GET, parameter: parameter, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrderResponse>(Utils.RateLimitType.Order_GetOrder, cancellationToken);
             if (response != null && response.Payload != null)
                 return response.Payload;
@@ -217,7 +217,7 @@ namespace FikaAmazonAPI.Services
                 ParameterBasedPII.RestrictedDataTokenRequest = createRDT;
             }
 
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.OrderItems(orderId), RestSharp.Method.Get, parameter: ParameterBasedPII, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.OrderItems(orderId), RestSharp.Method.GET, parameter: ParameterBasedPII, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrderItemsResponse>(Utils.RateLimitType.Order_GetOrderItems, cancellationToken);
             var nextToken = response.Payload.NextToken;
             orderItemList.AddRange(response.Payload.OrderItems);
@@ -240,7 +240,7 @@ namespace FikaAmazonAPI.Services
             queryParameters.Add(new KeyValuePair<string, string>("NextToken", nextToken));
 
 
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.OrderItems(orderId), RestSharp.Method.Get, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.OrderItems(orderId), RestSharp.Method.GET, queryParameters, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrderItemsResponse>(Utils.RateLimitType.Order_GetOrderItems, cancellationToken);
             return response.Payload;
         }
@@ -249,7 +249,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetOrderBuyerInfoAsync(orderId, queryParameters)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<OrderBuyerInfo> GetOrderBuyerInfoAsync(string orderId, List<KeyValuePair<string, string>> queryParameters = null, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.OrderBuyerInfo(orderId), RestSharp.Method.Get, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.OrderBuyerInfo(orderId), RestSharp.Method.GET, queryParameters, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrderBuyerInfoResponse>(Utils.RateLimitType.Order_GetOrderBuyerInfo, cancellationToken);
             return response.Payload;
         }
@@ -258,7 +258,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetOrderItemsBuyerInfoAsync(orderId)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<OrderItemsBuyerInfoList> GetOrderItemsBuyerInfoAsync(string orderId, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.OrderItemsBuyerInfo(orderId), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.OrderItemsBuyerInfo(orderId), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrderItemsBuyerInfoResponse>(Utils.RateLimitType.Order_GetOrderItemsBuyerInfo, cancellationToken);
             return response.Payload;
         }
@@ -267,7 +267,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetOrderAddressAsync(orderId)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<OrderAddress> GetOrderAddressAsync(string orderId, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.OrderShipmentInfo(orderId), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.OrderShipmentInfo(orderId), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrderAddressResponse>(Utils.RateLimitType.Order_GetOrderAddress, cancellationToken);
             return response.Payload;
         }
@@ -276,7 +276,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => UpdateShipmentStatusAsync(orderId, updateShipmentStatusRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<bool> UpdateShipmentStatusAsync(string orderId, UpdateShipmentStatusRequest updateShipmentStatusRequest, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.UpdateShipmentStatus(orderId), RestSharp.Method.Post, postJsonObj: updateShipmentStatusRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.UpdateShipmentStatus(orderId), RestSharp.Method.POST, postJsonObj: updateShipmentStatusRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<NoContentResult>(Utils.RateLimitType.Order_UpdateShipmentStatus, cancellationToken);
             return true;
@@ -287,7 +287,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetOrderRegulatedInfoAsync(orderId)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<OrderRegulatedInfo> GetOrderRegulatedInfoAsync(string orderId, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.GetOrderRegulatedInfo(orderId), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.GetOrderRegulatedInfo(orderId), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrderRegulatedInfoResponse>(Utils.RateLimitType.Order_GetOrderRegulatedInfo, cancellationToken);
             return response.Payload;
         }
@@ -296,7 +296,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => UpdateVerificationStatusAsync(orderId, updateVerificationStatusRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<bool> UpdateVerificationStatusAsync(string orderId, UpdateVerificationStatusRequest updateVerificationStatusRequest, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.UpdateVerificationStatus(orderId), RestSharp.Method.Patch, postJsonObj: updateVerificationStatusRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.UpdateVerificationStatus(orderId), RestSharp.Method.PATCH, postJsonObj: updateVerificationStatusRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<NoContentResult>(Utils.RateLimitType.Order_UpdateShipmentStatus, cancellationToken);
             return true;
@@ -309,7 +309,7 @@ namespace FikaAmazonAPI.Services
         {
             var queryParameters = parameterGetOrderItemsApprovals.getParameters();
 
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.GetOrderItemsApprovals(parameterGetOrderItemsApprovals.OrderId), RestSharp.Method.Get, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.GetOrderItemsApprovals(parameterGetOrderItemsApprovals.OrderId), RestSharp.Method.GET, queryParameters, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrderApprovalsResponse>(Utils.RateLimitType.Order_GetOrderRegulatedInfo, cancellationToken);
             return response.Payload;
         }
@@ -319,7 +319,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => ConfirmShipmentAsync(orderId, confirmShipmentRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<bool> ConfirmShipmentAsync(string orderId, ConfirmShipmentRequest confirmShipmentRequest, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(OrdersApiUrls.ConfirmShipment(orderId), RestSharp.Method.Post, postJsonObj: confirmShipmentRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(OrdersApiUrls.ConfirmShipment(orderId), RestSharp.Method.POST, postJsonObj: confirmShipmentRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<NoContentResult>(Utils.RateLimitType.Order_UpdateShipmentStatus, cancellationToken);
             return true;

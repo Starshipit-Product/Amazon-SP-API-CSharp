@@ -20,7 +20,7 @@ namespace FikaAmazonAPI.Services
         {
             var Payload = new { FeesEstimateRequest = feesEstimateRequest };
 
-            await CreateAuthorizedRequestAsync(ProductFeeApiUrls.GetMyFeesEstimateForSKU(SKU), RestSharp.Method.Post, postJsonObj: Payload, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ProductFeeApiUrls.GetMyFeesEstimateForSKU(SKU), RestSharp.Method.POST, postJsonObj: Payload, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetMyFeesEstimateResponse>(RateLimitType.ProductFees_GetMyFeesEstimateForSKU, cancellationToken);
             if (response != null && response.Payload != null)
                 return response.Payload.FeesEstimateResult;
@@ -33,7 +33,7 @@ namespace FikaAmazonAPI.Services
         {
             var Payload = new { FeesEstimateRequest = feesEstimateRequest };
 
-            await CreateAuthorizedRequestAsync(ProductFeeApiUrls.GetMyFeesEstimateForASIN(ASIN), RestSharp.Method.Post, postJsonObj: Payload, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ProductFeeApiUrls.GetMyFeesEstimateForASIN(ASIN), RestSharp.Method.POST, postJsonObj: Payload, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetMyFeesEstimateResponse>(RateLimitType.ProductFees_GetMyFeesEstimateForASIN, cancellationToken);
             if (response != null && response.Payload != null)
                 return response.Payload.FeesEstimateResult;
@@ -46,7 +46,7 @@ namespace FikaAmazonAPI.Services
 
         public async Task<GetMyFeesEstimatesResponse> GetMyFeesEstimateAsync(FeesEstimateByIdRequest[] feesEstimateRequest, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(ProductFeeApiUrls.GetMyFeesEstimate, RestSharp.Method.Post, postJsonObj: feesEstimateRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ProductFeeApiUrls.GetMyFeesEstimate, RestSharp.Method.POST, postJsonObj: feesEstimateRequest, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetMyFeesEstimatesResponse>(RateLimitType.ProductFees_GetMyFeesEstimate, cancellationToken);
             return response;
         }

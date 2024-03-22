@@ -40,7 +40,7 @@ namespace FikaAmazonAPI.Services
             }
             var parameters = parameterReportList.getParameters();
 
-            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReports, RestSharp.Method.Get, parameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReports, RestSharp.Method.GET, parameters, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetReportsResponseV00>(RateLimitType.Report_GetReports, cancellationToken);
             parameterReportList.nextToken = response.NextToken;
             var list = response.Reports;
@@ -59,7 +59,7 @@ namespace FikaAmazonAPI.Services
         public async Task<Report> GetReportAsync(string reportId, CancellationToken cancellationToken = default)
         {
 
-            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReport(reportId), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReport(reportId), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<Report>(RateLimitType.Report_GetReport, cancellationToken);
             if (response != null)
                 return response;
@@ -71,7 +71,7 @@ namespace FikaAmazonAPI.Services
         public async Task<bool> CancelReportAsync(string reportId, CancellationToken cancellationToken = default)
         {
 
-            await CreateAuthorizedRequestAsync(ReportApiUrls.CancelReport(reportId), RestSharp.Method.Delete, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ReportApiUrls.CancelReport(reportId), RestSharp.Method.DELETE, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<CancelReportResponse>(RateLimitType.Report_CancelReport, cancellationToken);
             if (response != null && response.Errors != null)
                 return false;
@@ -83,7 +83,7 @@ namespace FikaAmazonAPI.Services
         public async Task<ReportScheduleList> GetReportSchedulesAsync(ParameterReportSchedules parametersSchedules, CancellationToken cancellationToken = default)
         {
             var parameters = parametersSchedules.getParameters();
-            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReportSchedules, RestSharp.Method.Get, parameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReportSchedules, RestSharp.Method.GET, parameters, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetReportSchedulesResponseV00>(RateLimitType.Report_GetReportSchedules, cancellationToken);
             if (response != null && response.ReportSchedules != null)
                 return response.ReportSchedules;
@@ -104,7 +104,7 @@ namespace FikaAmazonAPI.Services
                 parameters = parameterReportListNew.getParameters();
             }
 
-            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReports, RestSharp.Method.Get, parameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReports, RestSharp.Method.GET, parameters, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetReportsResponseV00>(RateLimitType.Report_GetReports, cancellationToken);
             return response;
         }
@@ -118,7 +118,7 @@ namespace FikaAmazonAPI.Services
                 createReportSpecification.marketplaceIds = new MarketplaceIds();
                 createReportSpecification.marketplaceIds.Add(AmazonCredential.MarketPlace.ID);
             }
-            await CreateAuthorizedRequestAsync(ReportApiUrls.CreateReport, RestSharp.Method.Post, null, createReportSpecification, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ReportApiUrls.CreateReport, RestSharp.Method.POST, null, createReportSpecification, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<AmazonSpApiSDK.Models.Reports.CreateReportResult>(RateLimitType.Report_CreateReport, cancellationToken);
 
             if (response == null)
@@ -132,7 +132,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => CreateReportScheduleAsync(createReportScheduleSpecification)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<string> CreateReportScheduleAsync(ParameterCreateReportScheduleSpecification createReportScheduleSpecification, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(ReportApiUrls.CreateReportSchedule, RestSharp.Method.Post, null, createReportScheduleSpecification, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ReportApiUrls.CreateReportSchedule, RestSharp.Method.POST, null, createReportScheduleSpecification, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<CreateReportScheduleResult>(RateLimitType.Report_CreateReportSchedule, cancellationToken);
 
             if (response == null)
@@ -146,7 +146,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetReportScheduleAsync(reportScheduleId)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<ReportSchedule> GetReportScheduleAsync(string reportScheduleId, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReportSchedule(reportScheduleId), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReportSchedule(reportScheduleId), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<ReportSchedule>(RateLimitType.Report_GetReportSchedules, cancellationToken);
             if (response != null)
                 return response;
@@ -178,7 +178,7 @@ namespace FikaAmazonAPI.Services
                 };
             }
 
-            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReportDocument(reportDocumentId), RestSharp.Method.Get, parameter: parameterBasedPII, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ReportApiUrls.GetReportDocument(reportDocumentId), RestSharp.Method.GET, parameter: parameterBasedPII, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<ReportDocument>(RateLimitType.Report_GetReportDocument, cancellationToken);
             if (response != null)
                 return response;
@@ -274,7 +274,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => CancelReportScheduleAsync(reportScheduleId)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<bool> CancelReportScheduleAsync(string reportScheduleId, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(ReportApiUrls.CancelReportSchedule(reportScheduleId), RestSharp.Method.Delete, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ReportApiUrls.CancelReportSchedule(reportScheduleId), RestSharp.Method.DELETE, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<CancelReportScheduleResponse>(RateLimitType.Report_CancelReportSchedule, cancellationToken);
             if (response != null && response.Errors != null)
                 return false;
