@@ -22,7 +22,7 @@ namespace FikaAmazonAPI.Services
         public async Task<GetEligibleShipmentServicesResult> GetEligibleShipmentServicesOldAsync(GetEligibleShipmentServicesRequest getEligibleShipmentServicesRequest, CancellationToken cancellationToken = default)
         {
 
-            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetEligibleShipmentServicesOld, RestSharp.Method.Post, postJsonObj: getEligibleShipmentServicesRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetEligibleShipmentServicesOld, RestSharp.Method.POST, postJsonObj: getEligibleShipmentServicesRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<GetEligibleShipmentServicesResponse>(RateLimitType.MerchantFulFillment_GetEligibleShipmentServicesOld, cancellationToken);
             if (response != null && response.Payload != null)
@@ -34,7 +34,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetEligibleShipmentServicesAsync(getEligibleShipmentServicesRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<GetEligibleShipmentServicesResult> GetEligibleShipmentServicesAsync(GetEligibleShipmentServicesRequest getEligibleShipmentServicesRequest, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetEligibleShipmentServices, RestSharp.Method.Post, postJsonObj: getEligibleShipmentServicesRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetEligibleShipmentServices, RestSharp.Method.POST, postJsonObj: getEligibleShipmentServicesRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<GetEligibleShipmentServicesResponse>(RateLimitType.MerchantFulFillment_GetEligibleShipmentServices, cancellationToken);
             if (response != null && response.Payload != null)
@@ -59,7 +59,7 @@ namespace FikaAmazonAPI.Services
                 ParameterBasedPII.RestrictedDataTokenRequest = createRDT;
             }
 
-            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetShipment(shipmentId), RestSharp.Method.Get, parameter: ParameterBasedPII, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetShipment(shipmentId), RestSharp.Method.GET, parameter: ParameterBasedPII, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<GetShipmentResponse>(RateLimitType.MerchantFulFillment_GetShipment, cancellationToken);
             if (response != null && response.Payload != null)
@@ -83,7 +83,7 @@ namespace FikaAmazonAPI.Services
                 parameterBasedPII.RestrictedDataTokenRequest = createRDT;
             }
 
-            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetShipment(shipmentId), RestSharp.Method.Delete, parameter: parameterBasedPII, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetShipment(shipmentId), RestSharp.Method.DELETE, parameter: parameterBasedPII, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<GetShipmentResponse>(RateLimitType.MerchantFulFillment_CancelShipment, cancellationToken);
             if (response != null && response.Payload != null)
@@ -108,7 +108,7 @@ namespace FikaAmazonAPI.Services
                 parameterBasedPII.RestrictedDataTokenRequest = createRDT;
             }
 
-            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.CancelShipmentOld(shipmentId), RestSharp.Method.Put, parameter: parameterBasedPII, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.CancelShipmentOld(shipmentId), RestSharp.Method.PUT, parameter: parameterBasedPII, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<GetShipmentResponse>(RateLimitType.MerchantFulFillment_CancelShipmentOld, cancellationToken);
             if (response != null && response.Payload != null)
@@ -133,7 +133,7 @@ namespace FikaAmazonAPI.Services
                 parameterBasedPII.RestrictedDataTokenRequest = createRDT;
             }
 
-            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.CreateShipment, RestSharp.Method.Post, postJsonObj: createShipmentRequest, parameter: parameterBasedPII, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.CreateShipment, RestSharp.Method.POST, postJsonObj: createShipmentRequest, parameter: parameterBasedPII, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<CreateShipmentResponse>(RateLimitType.MerchantFulFillment_CreateShipment, cancellationToken);
             if (response != null && response.Payload != null)
@@ -145,7 +145,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetAdditionalSellerInputsOldAsync(getAdditionalSellerInputsRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<GetAdditionalSellerInputsResult> GetAdditionalSellerInputsOldAsync(GetAdditionalSellerInputsRequest getAdditionalSellerInputsRequest, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetAdditionalSellerInputsOld, RestSharp.Method.Post, postJsonObj: getAdditionalSellerInputsRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetAdditionalSellerInputsOld, RestSharp.Method.POST, postJsonObj: getAdditionalSellerInputsRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<GetAdditionalSellerInputsResponse>(RateLimitType.MerchantFulFillment_GetAdditionalSellerInputsOld, cancellationToken);
             if (response != null && response.Payload != null)
@@ -157,7 +157,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetAdditionalSellerInputsAsync(getAdditionalSellerInputsRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<GetAdditionalSellerInputsResult> GetAdditionalSellerInputsAsync(GetAdditionalSellerInputsRequest getAdditionalSellerInputsRequest, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetAdditionalSellerInputs, RestSharp.Method.Post, postJsonObj: getAdditionalSellerInputsRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MerchantFulfillmentApiUrls.GetAdditionalSellerInputs, RestSharp.Method.POST, postJsonObj: getAdditionalSellerInputsRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<GetAdditionalSellerInputsResponse>(RateLimitType.MerchantFulFillment_GetAdditionalSellerInputs, cancellationToken);
             if (response != null && response.Payload != null)

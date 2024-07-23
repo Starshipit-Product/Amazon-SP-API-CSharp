@@ -18,7 +18,7 @@ namespace FikaAmazonAPI.Services
         public async Task<string> GetAuthorizationCodeAsync(ParameterAuthorizationCode parameter, CancellationToken cancellationToken = default)
         {
             var param = parameter.getParameters();
-            await CreateAuthorizedRequestAsync(AuthorizationsApiUrls.GetAuthorizationCode, RestSharp.Method.Get, param, tokenDataType: TokenDataType.Grantless, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(AuthorizationsApiUrls.GetAuthorizationCode, RestSharp.Method.GET, param, tokenDataType: TokenDataType.Grantless, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<GetAuthorizationCodeResponse>(Utils.RateLimitType.Authorization_GetAuthorizationCode, cancellationToken);
             if (response != null && response.Payload != null)

@@ -29,15 +29,11 @@ namespace FikaAmazonAPI.AmazonSpApiSDK.Runtime
                 RestClient = new RestClient(LWAAuthorizationCredentials.Endpoint.GetLeftPart(UriPartial.Authority));
             }else
             {
-                var options = new RestClientOptions(LWAAuthorizationCredentials.Endpoint.GetLeftPart(UriPartial.Authority))
+                RestClient = new RestClient(LWAAuthorizationCredentials.Endpoint.GetLeftPart(UriPartial.Authority));
+                RestClient.Proxy = new System.Net.WebProxy()
                 {
-                    Proxy = new System.Net.WebProxy()
-                    {
-                        Address = new Uri(proxyAddress)
-                    }
+                    Address = new Uri(proxyAddress)
                 };
-
-                RestClient = new RestClient(options);
             }
         }
 
@@ -50,7 +46,7 @@ namespace FikaAmazonAPI.AmazonSpApiSDK.Runtime
         public virtual async Task<TokenResponse> GetAccessTokenAsync(CancellationToken cancellationToken = default)
         {
             LWAAccessTokenRequestMeta lwaAccessTokenRequestMeta = LWAAccessTokenRequestMetaBuilder.Build(LWAAuthorizationCredentials);
-            var accessTokenRequest = new RestRequest(LWAAuthorizationCredentials.Endpoint.AbsolutePath, RestSharp.Method.Post);
+            var accessTokenRequest = new RestRequest(LWAAuthorizationCredentials.Endpoint.AbsolutePath, RestSharp.Method.POST);
 
             string jsonRequestBody = JsonConvert.SerializeObject(lwaAccessTokenRequestMeta);
 
@@ -77,7 +73,7 @@ namespace FikaAmazonAPI.AmazonSpApiSDK.Runtime
             }
         }
 
-        private bool IsSuccessful(RestResponse response)
+        private bool IsSuccessful(IRestResponse response)
         {
             int statusCode = (int)response.StatusCode;
             return statusCode >= 200 && statusCode <= 299 && response.ResponseStatus == ResponseStatus.Completed;

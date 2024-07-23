@@ -17,7 +17,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetShipmentDetailsAsync(shipmentId, parameterBasedPII)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<ShipmentDetail> GetShipmentDetailsAsync(string shipmentId, ParameterBasedPII parameterBasedPII, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(ShipmentInvoicingApiUrls.GetShipmentDetails(shipmentId), RestSharp.Method.Get, parameter: parameterBasedPII, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ShipmentInvoicingApiUrls.GetShipmentDetails(shipmentId), RestSharp.Method.GET, parameter: parameterBasedPII, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetShipmentDetailsResponse>(RateLimitType.ShipmentInvoicing_GetShipmentDetails, cancellationToken);
 
             if (response != null && response.Payload != null)
@@ -30,7 +30,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => SubmitInvoiceAsync(shipmentId, submitInvoiceRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<bool> SubmitInvoiceAsync(string shipmentId, SubmitInvoiceRequest submitInvoiceRequest, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(ShipmentInvoicingApiUrls.SubmitInvoice(shipmentId), RestSharp.Method.Post, postJsonObj: submitInvoiceRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ShipmentInvoicingApiUrls.SubmitInvoice(shipmentId), RestSharp.Method.POST, postJsonObj: submitInvoiceRequest, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<SubmitInvoiceResponse>(RateLimitType.ShipmentInvoicing_SubmitInvoice, cancellationToken);
 
             return true;
@@ -40,7 +40,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetInvoiceStatusAsync(shipmentId)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<ShipmentInvoiceStatusInfo> GetInvoiceStatusAsync(string shipmentId, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(ShipmentInvoicingApiUrls.GetInvoiceStatus(shipmentId), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ShipmentInvoicingApiUrls.GetInvoiceStatus(shipmentId), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetInvoiceStatusResponse>(RateLimitType.ShipmentInvoicing_GetInvoiceStatus, cancellationToken);
 
             if (response != null && response.Payload != null)

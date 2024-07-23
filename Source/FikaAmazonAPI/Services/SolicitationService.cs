@@ -18,7 +18,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetSolicitationActionsForOrderAsync(orderId, queryParameters)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<GetSolicitationActionsForOrderResponseEmbedded> GetSolicitationActionsForOrderAsync(string orderId, List<KeyValuePair<string, string>> queryParameters = null, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(SolicitationsApiUrls.GetSolicitationActionsForOrder(orderId), RestSharp.Method.Get, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(SolicitationsApiUrls.GetSolicitationActionsForOrder(orderId), RestSharp.Method.GET, queryParameters, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetSolicitationActionsForOrderResponse>(RateLimitType.Solicitations_GetSolicitationActionsForOrder, cancellationToken);
             return response.Embedded;
         }
@@ -27,7 +27,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => CreateProductReviewAndSellerFeedbackSolicitationAsync(orderId, queryParameters)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<GetSolicitationActionsForOrderResponseEmbedded> CreateProductReviewAndSellerFeedbackSolicitationAsync(string orderId, List<KeyValuePair<string, string>> queryParameters = null, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(SolicitationsApiUrls.CreateProductReviewAndSellerFeedbackSolicitation(orderId), RestSharp.Method.Post, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(SolicitationsApiUrls.CreateProductReviewAndSellerFeedbackSolicitation(orderId), RestSharp.Method.POST, queryParameters, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetSolicitationActionsForOrderResponse>(RateLimitType.Solicitations_CreateProductReviewAndSellerFeedbackSolicitation, cancellationToken);
             return response.Embedded;
         }

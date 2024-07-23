@@ -24,7 +24,7 @@ namespace FikaAmazonAPI.Services
 
             var parameter = parameterListFinancialEventGroup.getParameters();
 
-            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEventGroups, RestSharp.Method.Get, parameter, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEventGroups, RestSharp.Method.GET, parameter, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<ListFinancialEventGroupsResponse>(RateLimitType.Financial_ListFinancialEventGroups, cancellationToken);
 
             list.AddRange(response.Payload.FinancialEventGroupList);
@@ -48,7 +48,7 @@ namespace FikaAmazonAPI.Services
             queryParameters.Add(new KeyValuePair<string, string>("NextToken", nextToken));
 
 
-            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEventGroups, RestSharp.Method.Get, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEventGroups, RestSharp.Method.GET, queryParameters, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<ListFinancialEventGroupsResponse>(RateLimitType.Financial_ListFinancialEventGroups, cancellationToken);
             return response.Payload;
         }
@@ -58,7 +58,7 @@ namespace FikaAmazonAPI.Services
                 Task.Run(() => ListFinancialEventsByGroupIdAsync(eventGroupId)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<List<FinancialEvents>> ListFinancialEventsByGroupIdAsync(string eventGroupId, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEventsByGroupId(eventGroupId), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEventsByGroupId(eventGroupId), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<ListFinancialEventsResponse>(RateLimitType.Financial_ListFinancialEventsByGroupId, cancellationToken);
 
             var nextToken = response.Payload.NextToken;
@@ -84,7 +84,7 @@ namespace FikaAmazonAPI.Services
             queryParameters.Add(new KeyValuePair<string, string>("NextToken", nextToken));
 
 
-            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEventsByGroupId(eventGroupId), RestSharp.Method.Get, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEventsByGroupId(eventGroupId), RestSharp.Method.GET, queryParameters, cancellationToken: cancellationToken);
             return await ExecuteRequestAsync<ListFinancialEventsResponse>(RateLimitType.Financial_ListFinancialEventsByGroupId, cancellationToken);
         }
 
@@ -93,7 +93,7 @@ namespace FikaAmazonAPI.Services
 
         public async Task<FinancialEvents> ListFinancialEventsByOrderIdAsync(string orderId, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEventsByOrderId(orderId), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEventsByOrderId(orderId), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<ListFinancialEventsResponse>(RateLimitType.Financial_ListFinancialEventsByOrderId, cancellationToken);
             return response.Payload.FinancialEvents;
         }
@@ -103,7 +103,7 @@ namespace FikaAmazonAPI.Services
 
         public async Task<FinancialEvents> ListFinancialEventsAsync(CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEvents, RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEvents, RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<ListFinancialEventsResponse>(RateLimitType.Financial_ListFinancialEvents, cancellationToken);
             return response.Payload.FinancialEvents;
         }
@@ -117,7 +117,7 @@ namespace FikaAmazonAPI.Services
 
             var parameter = parameterListFinancials.getParameters();
 
-            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEvents, RestSharp.Method.Get, parameter, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEvents, RestSharp.Method.GET, parameter, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<ListFinancialEventsResponse>(RateLimitType.Financial_ListFinancialEvents, cancellationToken);
 
             list.Add(response.Payload.FinancialEvents);
@@ -145,7 +145,7 @@ namespace FikaAmazonAPI.Services
             queryParameters.Add(new KeyValuePair<string, string>("NextToken", nextToken));
 
 
-            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEvents, RestSharp.Method.Get, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(FinanceApiUrls.ListFinancialEvents, RestSharp.Method.GET, queryParameters, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<ListFinancialEventsResponse>(RateLimitType.Financial_ListFinancialEvents, cancellationToken);
             return response.Payload;
         }

@@ -23,7 +23,7 @@ namespace FikaAmazonAPI.Services
             if (string.IsNullOrEmpty(listHandoverSlotsRequest.MarketplaceId))
                 listHandoverSlotsRequest.MarketplaceId = AmazonCredential.MarketPlace.ID;
 
-            await CreateAuthorizedRequestAsync(EasyShip20220323.ListHandoverSlots, RestSharp.Method.Post, postJsonObj: listHandoverSlotsRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(EasyShip20220323.ListHandoverSlots, RestSharp.Method.POST, postJsonObj: listHandoverSlotsRequest, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<ListHandoverSlotsResponse>(RateLimitType.EasyShip_ListHandoverSlots, cancellationToken);
             return response;
         }
@@ -37,7 +37,7 @@ namespace FikaAmazonAPI.Services
                 parameterGetScheduledPackage.marketplaceId = AmazonCredential.MarketPlace.ID;
 
             var parameter = parameterGetScheduledPackage.getParameters();
-            await CreateAuthorizedRequestAsync(EasyShip20220323.GetScheduledPackage, RestSharp.Method.Get, parameter, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(EasyShip20220323.GetScheduledPackage, RestSharp.Method.GET, parameter, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<Package>(RateLimitType.EasyShip_GetScheduledPackage, cancellationToken);
             return response;
         }
@@ -51,7 +51,7 @@ namespace FikaAmazonAPI.Services
             if (string.IsNullOrEmpty(createScheduledPackageRequest.MarketplaceId))
                 createScheduledPackageRequest.MarketplaceId = AmazonCredential.MarketPlace.ID;
 
-            await CreateAuthorizedRequestAsync(EasyShip20220323.CreateScheduledPackage, RestSharp.Method.Post, postJsonObj: createScheduledPackageRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(EasyShip20220323.CreateScheduledPackage, RestSharp.Method.POST, postJsonObj: createScheduledPackageRequest, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<Package>(RateLimitType.EasyShip_CreateScheduledPackage, cancellationToken);
             return response;
         }
@@ -66,7 +66,7 @@ namespace FikaAmazonAPI.Services
             if (string.IsNullOrEmpty(updateScheduledPackagesRequest.MarketplaceId))
                 updateScheduledPackagesRequest.MarketplaceId = AmazonCredential.MarketPlace.ID;
 
-            await CreateAuthorizedRequestAsync(EasyShip20220323.UpdateScheduledPackages, RestSharp.Method.Patch, postJsonObj: updateScheduledPackagesRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(EasyShip20220323.UpdateScheduledPackages, RestSharp.Method.PATCH, postJsonObj: updateScheduledPackagesRequest, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<Packages>(RateLimitType.EasyShip_UpdateScheduledPackages, cancellationToken);
             return response;
         }

@@ -21,7 +21,7 @@ namespace FikaAmazonAPI.Services
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
 
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.GetMessagingActionsForOrder(amazonOrderId), RestSharp.Method.Get, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.GetMessagingActionsForOrder(amazonOrderId), RestSharp.Method.GET, queryParameters, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<GetMessagingActionsForOrderResponse>(RateLimitType.Messaging_GetMessagingActionsForOrder, cancellationToken);
 
@@ -36,7 +36,7 @@ namespace FikaAmazonAPI.Services
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
 
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.ConfirmCustomizationDetails(amazonOrderId), RestSharp.Method.Post, queryParameters, postJsonObj: createConfirmCustomizationDetailsRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.ConfirmCustomizationDetails(amazonOrderId), RestSharp.Method.POST, queryParameters, postJsonObj: createConfirmCustomizationDetailsRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<CreateConfirmCustomizationDetailsResponse>(RateLimitType.Messaging_ConfirmCustomizationDetails, cancellationToken);
             if (response != null)
@@ -52,7 +52,7 @@ namespace FikaAmazonAPI.Services
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
 
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateConfirmDeliveryDetails(amazonOrderId), RestSharp.Method.Post, queryParameters, postJsonObj: createConfirmCustomizationDetailsRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateConfirmDeliveryDetails(amazonOrderId), RestSharp.Method.POST, queryParameters, postJsonObj: createConfirmCustomizationDetailsRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<CreateConfirmCustomizationDetailsResponse>(RateLimitType.Messaging_CreateConfirmDeliveryDetails, cancellationToken);
             if (response != null)
@@ -68,7 +68,7 @@ namespace FikaAmazonAPI.Services
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
 
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateLegalDisclosure(amazonOrderId), RestSharp.Method.Post, queryParameters, postJsonObj: createLegalDisclosureRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateLegalDisclosure(amazonOrderId), RestSharp.Method.POST, queryParameters, postJsonObj: createLegalDisclosureRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<CreateLegalDisclosureResponse>(RateLimitType.Messaging_CreateLegalDisclosure, cancellationToken);
             if (response != null)
@@ -84,7 +84,7 @@ namespace FikaAmazonAPI.Services
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
 
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateNegativeFeedbackRemoval(amazonOrderId), RestSharp.Method.Post, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateNegativeFeedbackRemoval(amazonOrderId), RestSharp.Method.POST, queryParameters, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<CreateNegativeFeedbackRemovalResponse>(RateLimitType.Messaging_CreateNegativeFeedbackRemoval, cancellationToken);
             if (response != null)
@@ -100,7 +100,7 @@ namespace FikaAmazonAPI.Services
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
 
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateConfirmOrderDetails(amazonOrderId), RestSharp.Method.Post, queryParameters, postJsonObj: createConfirmOrderDetailsRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateConfirmOrderDetails(amazonOrderId), RestSharp.Method.POST, queryParameters, postJsonObj: createConfirmOrderDetailsRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<CreateConfirmOrderDetailsResponse>(RateLimitType.Messaging_CreateConfirmOrderDetails, cancellationToken);
             if (response != null)
@@ -115,7 +115,7 @@ namespace FikaAmazonAPI.Services
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
 
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateConfirmServiceDetails(amazonOrderId), RestSharp.Method.Post, queryParameters, postJsonObj: createConfirmServiceDetailsRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateConfirmServiceDetails(amazonOrderId), RestSharp.Method.POST, queryParameters, postJsonObj: createConfirmServiceDetailsRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<CreateConfirmOrderDetailsResponse>(RateLimitType.Messaging_CreateConfirmServiceDetails, cancellationToken);
             if (response != null)
@@ -130,7 +130,7 @@ namespace FikaAmazonAPI.Services
         {
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateAmazonMotors(amazonOrderId), RestSharp.Method.Post, queryParameters, postJsonObj: createAmazonMotorsRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateAmazonMotors(amazonOrderId), RestSharp.Method.POST, queryParameters, postJsonObj: createAmazonMotorsRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<CreateConfirmOrderDetailsResponse>(RateLimitType.Messaging_CreateAmazonMotors, cancellationToken);
             if (response != null)
@@ -144,7 +144,7 @@ namespace FikaAmazonAPI.Services
         {
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateWarranty(amazonOrderId), RestSharp.Method.Post, queryParameters, postJsonObj: createWarrantyRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateWarranty(amazonOrderId), RestSharp.Method.POST, queryParameters, postJsonObj: createWarrantyRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<CreateConfirmOrderDetailsResponse>(RateLimitType.Messaging_CreateWarranty, cancellationToken);
             if (response != null)
@@ -159,7 +159,7 @@ namespace FikaAmazonAPI.Services
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
 
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.GetAttributes(amazonOrderId), RestSharp.Method.Get, queryParameters, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.GetAttributes(amazonOrderId), RestSharp.Method.GET, queryParameters, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<GetAttributesResponse>(RateLimitType.Messaging_GetAttributes, cancellationToken);
 
@@ -172,7 +172,7 @@ namespace FikaAmazonAPI.Services
         {
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateDigitalAccessKey(amazonOrderId), RestSharp.Method.Post, queryParameters, postJsonObj: createDigitalAccessKeyRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateDigitalAccessKey(amazonOrderId), RestSharp.Method.POST, queryParameters, postJsonObj: createDigitalAccessKeyRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<CreateConfirmOrderDetailsResponse>(RateLimitType.Messaging_CreateDigitalAccessKey, cancellationToken);
             if (response != null)
@@ -186,7 +186,7 @@ namespace FikaAmazonAPI.Services
         {
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateUnexpectedProblem(amazonOrderId), RestSharp.Method.Post, queryParameters, postJsonObj: createUnexpectedProblemRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.CreateUnexpectedProblem(amazonOrderId), RestSharp.Method.POST, queryParameters, postJsonObj: createUnexpectedProblemRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<CreateUnexpectedProblemResponse>(RateLimitType.Messaging_CreateUnexpectedProblem, cancellationToken);
             if (response != null)
@@ -200,7 +200,7 @@ namespace FikaAmazonAPI.Services
         {
             List<KeyValuePair<string, string>> queryParameters = new List<KeyValuePair<string, string>>();
             queryParameters.Add(new KeyValuePair<string, string>("marketplaceIds", AmazonCredential.MarketPlace.ID));
-            await CreateAuthorizedRequestAsync(MessaginApiUrls.SendInvoice(amazonOrderId), RestSharp.Method.Post, queryParameters, postJsonObj: invoiceRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(MessaginApiUrls.SendInvoice(amazonOrderId), RestSharp.Method.POST, queryParameters, postJsonObj: invoiceRequest, cancellationToken: cancellationToken);
 
             var response = await ExecuteRequestAsync<InvoiceResponse>(RateLimitType.Messaging_CreateUnexpectedProblem, cancellationToken);
             if (response != null)

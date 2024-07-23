@@ -23,7 +23,7 @@ namespace FikaAmazonAPI.Services
 
             var queryParameters = searchOrderList.getParameters();
             //await CreateAuthorizedRequestAsync(VendorDirectFulfillmentOrdersApiUrls.GetOrders, RestSharp.Method.GET, parameter: queryParameters);
-            await CreateAuthorizedRequestAsync(VendorDirectFulfillmentOrdersApiUrls.GetOrders, RestSharp.Method.Get, queryParameters, parameter: searchOrderList, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(VendorDirectFulfillmentOrdersApiUrls.GetOrders, RestSharp.Method.GET, queryParameters, parameter: searchOrderList, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrdersResponse>(RateLimitType.VendorDirectFulfillmentOrdersV1_GetOrders, cancellationToken);
             var nextToken = response.Payload?.Pagination?.NextToken;
             orderList.AddRange(response.Payload.Orders);
@@ -40,7 +40,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => GetOrderAsync(PurchaseOrderNumber)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<Order> GetOrderAsync(string PurchaseOrderNumber, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(VendorDirectFulfillmentOrdersApiUrls.GetOrder(PurchaseOrderNumber), RestSharp.Method.Get, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(VendorDirectFulfillmentOrdersApiUrls.GetOrder(PurchaseOrderNumber), RestSharp.Method.GET, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOrderResponse>(RateLimitType.VendorDirectFulfillmentOrdersV1_GetOrder, cancellationToken);
             return response.Payload;
         }
@@ -49,7 +49,7 @@ namespace FikaAmazonAPI.Services
             Task.Run(() => SubmitAcknowledgementAsync(submitAcknowledgementRequest)).ConfigureAwait(false).GetAwaiter().GetResult();
         public async Task<TransactionId> SubmitAcknowledgementAsync(SubmitAcknowledgementRequest submitAcknowledgementRequest, CancellationToken cancellationToken = default)
         {
-            await CreateAuthorizedRequestAsync(VendorDirectFulfillmentOrdersApiUrls.SubmitAcknowledgement, RestSharp.Method.Post, postJsonObj: submitAcknowledgementRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(VendorDirectFulfillmentOrdersApiUrls.SubmitAcknowledgement, RestSharp.Method.POST, postJsonObj: submitAcknowledgementRequest, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<SubmitAcknowledgementResponse>(RateLimitType.VendorDirectFulfillmentOrdersV1_SubmitAcknowledgement, cancellationToken);
             return response.Payload;
         }

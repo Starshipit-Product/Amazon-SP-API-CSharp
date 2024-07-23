@@ -31,7 +31,7 @@ namespace FikaAmazonAPI.Services
 
             var param = parameterGetPricing.getParameters();
 
-            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetPricing, RestSharp.Method.Get, param, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetPricing, RestSharp.Method.GET, param, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetPricingResponse>(RateLimitType.ProductPricing_GetPricing, cancellationToken);
             if (response != null && response.Payload != null)
                 return response.Payload;
@@ -49,7 +49,7 @@ namespace FikaAmazonAPI.Services
 
             var param = parameterGetCompetitivePricing.getParameters();
 
-            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetCompetitivePricing, RestSharp.Method.Get, param, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetCompetitivePricing, RestSharp.Method.GET, param, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetPricingResponse>(RateLimitType.ProductPricing_GetCompetitivePricing, cancellationToken);
             if (response != null && response.Payload != null)
                 return response.Payload;
@@ -65,7 +65,7 @@ namespace FikaAmazonAPI.Services
 
             var param = parameterGetListingOffers.getParameters();
 
-            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetListingOffersBySellerSku(parameterGetListingOffers.SellerSKU), RestSharp.Method.Get, param, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetListingOffersBySellerSku(parameterGetListingOffers.SellerSKU), RestSharp.Method.GET, param, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOffersResponse>(RateLimitType.ProductPricing_GetListingOffers, cancellationToken);
             if (response != null && response.Payload != null)
                 return response.Payload;
@@ -83,7 +83,7 @@ namespace FikaAmazonAPI.Services
 
             var param = parameterGetItemOffers.getParameters();
 
-            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetItemOffers(parameterGetItemOffers.Asin), RestSharp.Method.Get, param, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetItemOffers(parameterGetItemOffers.Asin), RestSharp.Method.GET, param, cancellationToken: cancellationToken);
             var response = await ExecuteRequestAsync<GetOffersResponse>(RateLimitType.ProductPricing_GetItemOffers, cancellationToken);
             if (response != null && response.Payload != null)
                 return response.Payload;
@@ -108,7 +108,7 @@ namespace FikaAmazonAPI.Services
             ]
              */
 
-            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetBatchItemOffers, RestSharp.Method.Post, postJsonObj: parameterGetItemOffersBatchRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetBatchItemOffers, RestSharp.Method.POST, postJsonObj: parameterGetItemOffersBatchRequest, cancellationToken: cancellationToken);
             return await ExecuteRequestAsync<GetBatchOffersResponse>(RateLimitType.ProductPricing_GetItemOffersBatch, cancellationToken);
         }
 
@@ -131,7 +131,7 @@ Task.Run(() => GetListingOffersBatchAsync(parameterGetItemOffersBatchRequest)).C
             ]
              */
 
-            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetBatchListingOffers, RestSharp.Method.Post, postJsonObj: parameterGetItemOffersBatchRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetBatchListingOffers, RestSharp.Method.POST, postJsonObj: parameterGetItemOffersBatchRequest, cancellationToken: cancellationToken);
             return await ExecuteRequestAsync<GetBatchOffersResponse>(RateLimitType.ProductPricing_GetListingOffersBatch, cancellationToken);
         }
 
@@ -168,7 +168,7 @@ Task.Run(() => GetListingOffersBatchAsync(parameterGetItemOffersBatchRequest)).C
             ]
              */
 
-            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetFeaturedOfferExpectedPriceBatch, RestSharp.Method.Post, postJsonObj: getFeaturedOfferExpectedPriceBatchRequest, cancellationToken: cancellationToken);
+            await CreateAuthorizedRequestAsync(ProductPricingApiUrls.GetFeaturedOfferExpectedPriceBatch, RestSharp.Method.POST, postJsonObj: getFeaturedOfferExpectedPriceBatchRequest, cancellationToken: cancellationToken);
             return await ExecuteRequestAsync<GetFeaturedOfferExpectedPriceBatchResponse>(RateLimitType.ProductPricing_GetListingOffersBatch, cancellationToken);
         }
 
